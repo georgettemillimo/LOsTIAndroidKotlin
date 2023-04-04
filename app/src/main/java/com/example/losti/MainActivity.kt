@@ -7,6 +7,7 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CutCornerShape
+import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
@@ -21,6 +22,8 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.input.ImeAction
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
@@ -118,12 +121,7 @@ fun LoginHeader(){
 }
 
 
-
-
-
-
-
-
+//This is the body that Contains the background and the BOx Layout Field that holds the Text and The Texfield
 
 @Composable
 fun ColumnScope.LoginBody(username: String, password: String,
@@ -136,7 +134,8 @@ fun ColumnScope.LoginBody(username: String, password: String,
         onValueChange = onUsernameChange,
         leadingIcon = {
             Icon(Icons.Default.Person, contentDescription = "Username" )
-        }
+        },
+        keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email, imeAction = ImeAction.Next)
     )
 
     Spacer(modifier = Modifier.height(8.dp))
@@ -147,7 +146,8 @@ fun ColumnScope.LoginBody(username: String, password: String,
         visualTransformation = PasswordVisualTransformation(),
         leadingIcon = {
             Icon(Icons.Default.Lock, contentDescription = "Password")
-        }
+        },
+        keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password, imeAction = ImeAction.Done)
     )
 
     TextButton(onClick = { onForgotPasswordClick}, modifier = Modifier.align(Alignment.End)) {
@@ -171,10 +171,6 @@ fun LoginFooter(
         Text(text = "Don't Have an Account? Click Here")
     }
 }
-
-
-
-
 
 
 
